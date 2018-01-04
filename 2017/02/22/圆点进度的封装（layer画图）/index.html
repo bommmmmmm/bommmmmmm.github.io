@@ -51,7 +51,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>ios苹果原生分享框架 - boom</title>
+<title>圆点进度的封装（layer画图） - boom</title>
 
 <meta name="keywords" content="iOS">
 
@@ -162,35 +162,26 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/bommmmmmm" target="_blank">boom</a>
-                    <span title="最后编辑于2018-01-04">2018-01-04</span>
+                    <span title="最后编辑于2017-02-22">2017-02-22</span>
                 </p>
                 <p>好好工作，争取早日回家养猪</p>
             </div>
-            <h2 class="post-title">ios苹果原生分享框架</h2>
+            <h2 class="post-title">圆点进度的封装（layer画图）</h2>
             <div class="post-meta">
-                本文总共2749个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共607个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>最近在做一个需求时，让我感觉到了经验的恐怖。。。<br>一个老程序员的经验完全胜过代码水平！！！！！</p>
-<p>首先来说一下这个需求<br>1、可以分享图片、文字、链接<br>2、要有分享界面<br>3、分享出去后，在微信、qq聊天中不显示小尾巴</p>
-<p>且不说前面两点，光是最后一点就很纠结，一开始用的是shareSDK 分享，但是咨询之后，发现小尾巴无法去除，几经波折才找到了苹果原生的框架分享social.framework  仅仅需要框架Social，引入文件<socail socail.h="">就可以使用。而且最方便的是应用体积变小了，不用去申请相关平台的key，直接分享，十分方便。</socail></p>
-<p>最主要的是 分享界面也已经写好的，如果没有什么特殊要求，直接用系统的就可以了，系统的分享一共可以使用两种：UIActivityViewController 和  SLComposeViewController</p>
-<p>下面先来说一说UIActivityViewController</p>
-<p>UIActivityViewController  的使用不需要引入socail.framework</p>
-<p>但是用这个会先有一个底部的弹框<br><img src="http://upload-images.jianshu.io/upload_images/2251830-0aaa5c418cbbedb8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AE5C7D5F074C03CCBDAA1222177A861F.jpg"></p>
-<p>后面的分享效果就和SLComposeViewController分享一样，大家可以往下翻<br>类似于这种，必须选择之后才可以进行分享。这个底部弹框也可以自定义，这个我有空可以封装一下<br>调用这个用的代码很简单<br>activityItems  是图片数组，可以直接分享一组图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray* activityItems = [NSMutableArray array];</span><br><span class="line">    UIActivityViewController</span><br><span class="line">    *activityVC = [[UIActivityViewController</span><br><span class="line">                    alloc]initWithActivityItems:activityItems applicationActivities:nil];</span><br><span class="line">    // 下面是添加是否显示的类别</span><br><span class="line">//    activityVC.excludedActivityTypes = @[UIActivityTypePostToFacebook,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeMail,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,UIActivityTypePostToTencentWeibo, UIActivityTypeAirDrop,UIActivityTypeOpenInIBooks];</span><br><span class="line">    [self presentViewController:activityVC animated:YES completion:nil];</span><br></pre></td></tr></table></figure></p>
-<p>试一试就知道了，其实很简单的</p>
-<p>下面再说说SLComposeViewController<br>使用这个，必须要引入文件<socail socail.h="">，这个是系统内部框架，调用的代码如下</socail></p>
-<h3 id="iOS-11之后-框架已移除"><a href="#iOS-11之后-框架已移除" class="headerlink" title="iOS 11之后  框架已移除"></a>iOS 11之后 <socail socail.h=""> 框架已移除</socail></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //判断设备是否有分享的相应的软件,可选的有微博、微信、Twitter、Facebook</span><br><span class="line">    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) &#123;</span><br><span class="line">        NSLog(@&quot;或者没有配置相关的帐号&quot;);</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        NSLog(@&quot;已安装&quot;);</span><br><span class="line">        </span><br><span class="line">        SLComposeViewController *slComposerSheet=  [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];</span><br><span class="line">        </span><br><span class="line">//        [slComposerSheet setInitialText:@&quot;分享到微信&quot;];</span><br><span class="line">        // 不能直接添加数组，需要多次添加</span><br><span class="line">        [slComposerSheet addImage:[UIImage imageNamed:@&quot;图片&quot;]];</span><br><span class="line">//        [slComposerSheet addURL:[NSURL URLWithString:@&quot;http://www.weibo.com/&quot;]];</span><br><span class="line">        </span><br><span class="line">        [self presentViewController:slComposerSheet animated:YES completion:nil];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>###使用SLComposeViewController分享多个图片的时候  要注意要进行循环添加</p>
-<p>贴一下图片，看一下分享效果<img src="http://upload-images.jianshu.io/upload_images/2251830-c940cfa49464bdda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5BF93A6D59A518C9E0FAD7CAEC8D38C8.png"><img src="http://upload-images.jianshu.io/upload_images/2251830-fc7857bbef544397.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1E44A02A237654864FFB1181BA544DEB.png"><img src="http://upload-images.jianshu.io/upload_images/2251830-6f24ae896f1cf3f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3497434954D39285F96A6074A2CD2608.png"></p>
-<p>这样就已经是分享完成了</p>
-<p>注意：<br>微信、qq分享时，因为原生框架没有加入这些，这里我们可以通过下面代码，通过打印出来的信息查看是否安装相关的软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SLComposeViewController *composeVc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];</span><br></pre></td></tr></table></figure></p>
-<p>直接看控制台的信息<br>通用的字段判断，只需要把SLServiceTypeSinaWeibo 改成 下面这个字符串，就可以对应判断是否安装了相关软件</p>
-<p>qq                  com.tencent.mqq.ShareExtension<br>微信               com.tencent.xin.sharetimeline</p>
-<p>这里是通过 iOS 的  ShareExtension机制，大家可以了解一下</p>
-<p>有什么不懂得，可以留言哦。代码较少，我就不贴具体的代码了<br>其实代码一点都不难，但这个由于国内主流的分享一般是shareSDK或者是友盟，所以这些东西还是比较少有人知道的，尤其是SLComposeViewController的使用。</p>
+            <p>先给上个图，因为这个东西具体不好描述，可以自己修改修改做成很多东西。</p>
+<p>本来公司的项目很简单，也用不到这个需求，后来大改版（这里吐槽一下UI！！！），也就有了现在的这个需求。</p>
+<p>贴一下需求，就是这个图外层的小圈</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2251830-ee87338c0c33c6c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="F579161D-AF49-4614-A0AF-FCA468694D72.png"></p>
+<p>项目需求是根据每次检测后的结果，做出一个一个的点表示百分比，而且不同的结果，显示百分比的点颜色也不能一样！！！</p>
+<p>在网上找了很多的demo，始终没有合适的，最后自己还是硬着头皮写了。一开始写的很艰难，因为一开始思路就是错的。。。</p>
+<p>后来还好有人给我指点了一下，思路一下子就开了，蹭蹭的就实现了。哈哈哈哈哈</p>
+<p>先来说下实现思路：<br>1、确定一个绘制图层的中心点<br>2、先画一个小椭圆（这里是需求！！！）很简单的就可以画出来了，画完之后，肯定要偏移一个角度再画，不然怎么能围成一个圆呢！  重点来了！！！这时候不要去改变下一个画的小椭圆的位置！！！改变的是layer层的位置！！！也就是通过旋转画布，达到围成一个圆的效果！！！相信我，这样是最简单的！！！别问我是怎么知道的。。。我是纠结了一整天才找到这个合适的思路！！！<br>3、画完之后，当然要再画一个相同的在上面，这样才能有颜色上的区分，显示出百分比的感觉！！！主要的核心就是旋转画布达到画外圆的效果！！！</p>
+<p>最后贴一下git地址，下载的只有两个文件，可能需要做一点修改。<br><a href="https://github.com/bommmmmmm/LPProgress.git" target="_blank" rel="noopener">https://github.com/bommmmmmm/LPProgress.git</a></p>
+<p>轻砖<del>~</del>~~~~</p>
 
         </div>
         

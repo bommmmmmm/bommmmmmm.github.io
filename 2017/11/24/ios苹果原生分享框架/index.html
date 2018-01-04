@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="John Doe">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>ios苹果原生分享框架 - boom</title>
+
+<meta name="keywords" content="iOS">
+
+<meta name="description " content="iOS">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="boom">boom</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">刘平</h1>
+        <h3 class="cover-siteTitle">吹逼</h3>
+        <p class="cover-siteDesc">好好工作，争取早日回家养猪</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/bommmmmmm" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-telegram">
+                <a href="https://www.jianshu.com/u/955aaff4602f" target="_blank" title="telegram" ref="friend">
+                    <i class="fa fa-telegram"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/learning" data-name="iOS之路">iOS之路</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/life" data-name="杂记">杂记</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.jianshu.com/u/955aaff4602f" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/bommmmmmm" target="_blank">boom</a>
+                    <span title="最后编辑于2017-11-24">2017-11-24</span>
+                </p>
+                <p>好好工作，争取早日回家养猪</p>
+            </div>
+            <h2 class="post-title">ios苹果原生分享框架</h2>
+            <div class="post-meta">
+                本文总共2749个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>最近在做一个需求时，让我感觉到了经验的恐怖。。。<br>一个老程序员的经验完全胜过代码水平！！！！！</p>
+<p>首先来说一下这个需求<br>1、可以分享图片、文字、链接<br>2、要有分享界面<br>3、分享出去后，在微信、qq聊天中不显示小尾巴</p>
+<p>且不说前面两点，光是最后一点就很纠结，一开始用的是shareSDK 分享，但是咨询之后，发现小尾巴无法去除，几经波折才找到了苹果原生的框架分享social.framework  仅仅需要框架Social，引入文件<socail socail.h="">就可以使用。而且最方便的是应用体积变小了，不用去申请相关平台的key，直接分享，十分方便。</socail></p>
+<p>最主要的是 分享界面也已经写好的，如果没有什么特殊要求，直接用系统的就可以了，系统的分享一共可以使用两种：UIActivityViewController 和  SLComposeViewController</p>
+<p>下面先来说一说UIActivityViewController</p>
+<p>UIActivityViewController  的使用不需要引入socail.framework</p>
+<p>但是用这个会先有一个底部的弹框<br><img src="http://upload-images.jianshu.io/upload_images/2251830-0aaa5c418cbbedb8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AE5C7D5F074C03CCBDAA1222177A861F.jpg"></p>
+<p>后面的分享效果就和SLComposeViewController分享一样，大家可以往下翻<br>类似于这种，必须选择之后才可以进行分享。这个底部弹框也可以自定义，这个我有空可以封装一下<br>调用这个用的代码很简单<br>activityItems  是图片数组，可以直接分享一组图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray* activityItems = [NSMutableArray array];</span><br><span class="line">    UIActivityViewController</span><br><span class="line">    *activityVC = [[UIActivityViewController</span><br><span class="line">                    alloc]initWithActivityItems:activityItems applicationActivities:nil];</span><br><span class="line">    // 下面是添加是否显示的类别</span><br><span class="line">//    activityVC.excludedActivityTypes = @[UIActivityTypePostToFacebook,UIActivityTypePostToTwitter,UIActivityTypeMessage,UIActivityTypeMail,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,UIActivityTypePostToTencentWeibo, UIActivityTypeAirDrop,UIActivityTypeOpenInIBooks];</span><br><span class="line">    [self presentViewController:activityVC animated:YES completion:nil];</span><br></pre></td></tr></table></figure></p>
+<p>试一试就知道了，其实很简单的</p>
+<p>下面再说说SLComposeViewController<br>使用这个，必须要引入文件<socail socail.h="">，这个是系统内部框架，调用的代码如下</socail></p>
+<h3 id="iOS-11之后-框架已移除"><a href="#iOS-11之后-框架已移除" class="headerlink" title="iOS 11之后  框架已移除"></a>iOS 11之后 <socail socail.h=""> 框架已移除</socail></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> //判断设备是否有分享的相应的软件,可选的有微博、微信、Twitter、Facebook</span><br><span class="line">    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) &#123;</span><br><span class="line">        NSLog(@&quot;或者没有配置相关的帐号&quot;);</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        NSLog(@&quot;已安装&quot;);</span><br><span class="line">        </span><br><span class="line">        SLComposeViewController *slComposerSheet=  [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];</span><br><span class="line">        </span><br><span class="line">//        [slComposerSheet setInitialText:@&quot;分享到微信&quot;];</span><br><span class="line">        // 不能直接添加数组，需要多次添加</span><br><span class="line">        [slComposerSheet addImage:[UIImage imageNamed:@&quot;图片&quot;]];</span><br><span class="line">//        [slComposerSheet addURL:[NSURL URLWithString:@&quot;http://www.weibo.com/&quot;]];</span><br><span class="line">        </span><br><span class="line">        [self presentViewController:slComposerSheet animated:YES completion:nil];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>###使用SLComposeViewController分享多个图片的时候  要注意要进行循环添加</p>
+<p>贴一下图片，看一下分享效果<img src="http://upload-images.jianshu.io/upload_images/2251830-c940cfa49464bdda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5BF93A6D59A518C9E0FAD7CAEC8D38C8.png"><img src="http://upload-images.jianshu.io/upload_images/2251830-fc7857bbef544397.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1E44A02A237654864FFB1181BA544DEB.png"><img src="http://upload-images.jianshu.io/upload_images/2251830-6f24ae896f1cf3f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3497434954D39285F96A6074A2CD2608.png"></p>
+<p>这样就已经是分享完成了</p>
+<p>注意：<br>微信、qq分享时，因为原生框架没有加入这些，这里我们可以通过下面代码，通过打印出来的信息查看是否安装相关的软件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SLComposeViewController *composeVc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeSinaWeibo];</span><br></pre></td></tr></table></figure></p>
+<p>直接看控制台的信息<br>通用的字段判断，只需要把SLServiceTypeSinaWeibo 改成 下面这个字符串，就可以对应判断是否安装了相关软件</p>
+<p>qq                  com.tencent.mqq.ShareExtension<br>微信               com.tencent.xin.sharetimeline</p>
+<p>这里是通过 iOS 的  ShareExtension机制，大家可以了解一下</p>
+<p>有什么不懂得，可以留言哦。代码较少，我就不贴具体的代码了<br>其实代码一点都不难，但这个由于国内主流的分享一般是shareSDK或者是友盟，所以这些东西还是比较少有人知道的，尤其是SLComposeViewController的使用。</p>
+
+        </div>
+        
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/learning/">iOS之路</a>
+            
+            <a href="/tags/iOS/">iOS</a>
+            
+        </div>
+        
+    </article>
+    
+    <p>都是瞎写的，要是觉得不好，你来打我呀</p>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            转载请告知，联系<a href="https://github.com/bommmmmmm" target="_blank">我，作者<a href="https://github.com/bommmmmmm" target="_blank">刘平</a>
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/27/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            wxMpImg: '/images/weixin-mp.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

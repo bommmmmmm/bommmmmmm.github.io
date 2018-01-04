@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://yoursite.com/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://yoursite.com">
+<meta name="author" content="John Doe">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>防支付宝支付输入金额的逻辑  自动补零，小数点后两位输入 - boom</title>
+
+<meta name="keywords" content="iOS">
+
+<meta name="description " content="iOS">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="boom">boom</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-archives"></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-weixin-mp" href="javascript:"><i class="fa fa-weixin"></i></a>
+</div>
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">刘平</h1>
+        <h3 class="cover-siteTitle">吹逼</h3>
+        <p class="cover-siteDesc">好好工作，争取早日回家养猪</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/bommmmmmm" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-telegram">
+                <a href="https://www.jianshu.com/u/955aaff4602f" target="_blank" title="telegram" ref="friend">
+                    <i class="fa fa-telegram"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/learning" data-name="iOS之路">iOS之路</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/life" data-name="杂记">杂记</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://www.jianshu.com/u/955aaff4602f" target="_blank">
+                    <img width="48" src="/images/favicon.png" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/bommmmmmm" target="_blank">boom</a>
+                    <span title="最后编辑于2017-09-28">2017-09-28</span>
+                </p>
+                <p>好好工作，争取早日回家养猪</p>
+            </div>
+            <h2 class="post-title">防支付宝支付输入金额的逻辑  自动补零，小数点后两位输入</h2>
+            <div class="post-meta">
+                本文总共3875个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>今天有个朋友问了我支付宝支付  时，输入金额的逻辑怎么实现，想了想，之前在做二维码支付的时候，做过这样的需求，然后打开xcode，粘贴复制给了他我之前写的代码，完美解决。</p>
+<p>不知不觉分享代码，也成了一种习惯。我会尽量的去把自己项目里面功能封装起来，让更多的人去使用，用的轮子越多，才能以更高的效率去完成工作。加油吧！</p>
+<p>这里说一下具体需求<br>1、未输入小数点时，自动补零（输入2，则显示2.00）<br>2、只输入小数点之后，开始输入小数点后两位，并自动补零（直接输入   .   那么会显示0.00，再输入具体数字时，比如说1，则显示0.10）<br>3、先输入数字，再输入小数点，开始输入小数点后两位（比如。输入  1.    此时显示的是1.00  ，再输入2，则显示1.20）<br>4、项目要求的每次输入，清空之前的金额数目</p>
+<p>这里直接上代码，主要的就是在textField的代理方法：- (BOOL)textField:(UITextField <em>)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString </em>)string   中进行逻辑处理</p>
+<p>这里要注意，删除操作也会走代理，所以也要考虑到这个情况，里面的属性需要自行添加    比如 self.isSendDot</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField &#123;</span><br><span class="line">    textField.text = @&quot;&quot;;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // 是否是删除</span><br><span class="line">    if ([string isEqualToString:@&quot;&quot;]) &#123;</span><br><span class="line">        if ([textField.text hasSuffix:@&quot;.&quot;]) &#123;</span><br><span class="line">            self.isSendDot = NO;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return YES;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // 首先判断是否有小数点，有小数点，则说明不是第一次输入</span><br><span class="line">    if ([string isEqualToString:@&quot;.&quot;] &amp;&amp; self.isSendDot == YES) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    if ([string isEqualToString:@&quot;.&quot;]) &#123;</span><br><span class="line">        self.isSendDot = YES;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if ([textField.text containsString:@&quot;.&quot;]) &#123;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        if (self.isSendDot) &#123;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            if ([string isEqualToString:@&quot;.&quot;]) &#123;</span><br><span class="line">                return NO;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            NSArray *array = [textField.text componentsSeparatedByString:@&quot;.&quot;]; //从字符A中分隔成2个元素的数组</span><br><span class="line">            NSString *dotString = array[1];</span><br><span class="line">            if ([dotString isEqualToString:@&quot;00&quot;]) &#123;</span><br><span class="line">                textField.text = [NSString stringWithFormat:@&quot;%@.%@&quot;, array[0],string];</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                if (dotString.length &gt;= 2) &#123;</span><br><span class="line">                    return NO;</span><br><span class="line">                &#125;</span><br><span class="line">                textField.text = [NSString stringWithFormat:@&quot;%@%@&quot;, textField.text,string];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            NSArray *array = [textField.text componentsSeparatedByString:@&quot;.&quot;]; //从字符A中分隔成2个元素的数组</span><br><span class="line">            NSString *MoneyString  = [NSString stringWithFormat:@&quot;%@%@&quot;, array[0],string];</span><br><span class="line">            textField.text = [NSString stringWithFormat:@&quot;%@.%@&quot;, MoneyString,array[1]];</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        self.isSendDot = NO;</span><br><span class="line">        // 判断是否是输入的.</span><br><span class="line">        if ([string isEqualToString:@&quot;.&quot;]) &#123;</span><br><span class="line">            if (![textField.text isEqualToString:@&quot;&quot;]) &#123;</span><br><span class="line">                textField.text = [NSString stringWithFormat:@&quot;%@.00&quot;, textField.text];</span><br><span class="line">                self.isSendDot = YES;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                textField.text = @&quot;0.00&quot;;</span><br><span class="line">                self.isSendDot = YES;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            </span><br><span class="line">            // 这里有可能是删除了  .  所有要加上判断</span><br><span class="line">            if (![textField.text isEqualToString:@&quot;&quot;]) &#123;</span><br><span class="line">                textField.text = [NSString stringWithFormat:@&quot;%@%@&quot;, textField.text,string];</span><br><span class="line">                </span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                // 第一次输入的是有效数字，拼接上.00</span><br><span class="line">                textField.text = [NSString stringWithFormat:@&quot;%@%@&quot;, string,@&quot;.00&quot;];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>专门做了一个测试的项目，有兴趣可以下载看一下<a href="https://github.com/bommmmmmm/customTextField.git" target="_blank" rel="noopener">https://github.com/bommmmmmm/customTextField.git</a><br>如果可以的话，求个star   😝😝</p>
+
+        </div>
+        
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/learning/">iOS之路</a>
+            
+            <a href="/tags/iOS/">iOS</a>
+            
+        </div>
+        
+    </article>
+    
+    <p>都是瞎写的，要是觉得不好，你来打我呀</p>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            转载请告知，联系<a href="https://github.com/bommmmmmm" target="_blank">我，作者<a href="https://github.com/bommmmmmm" target="_blank">刘平</a>
+        </p>
+        
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/27/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            wxMpImg: '/images/weixin-mp.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
